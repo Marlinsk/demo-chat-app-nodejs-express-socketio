@@ -4,6 +4,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mongoose = require('mongoose');
+require('dotenv').config(); 
 
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
@@ -14,22 +15,31 @@ var Message = mongoose.model('Message',{
   message : String
 })
 
-var dbUrl = 'mongodb://amkurian:amkurian1@ds257981.mlab.com:57981/simple-chat'
-
 app.get('/messages', (req, res) => {
-  Message.find({},(err, messages)=> {
-    res.send(messages);
-  })
-})
+  Message.find({})
+    .exec()
+    .then((messages) => {
+      res.send(messages);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+});
 
 
 app.get('/messages/:user', (req, res) => {
-  var user = req.params.user
-  Message.find({name: user},(err, messages)=> {
-    res.send(messages);
-  })
-})
-
+  var user = req.params.user;
+  Message.find({ name: user })
+    .exec()
+    .then((messages) => {
+      res.send(messages);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+});
 
 app.post('/messages', async (req, res) => {
   try{
@@ -55,15 +65,15 @@ app.post('/messages', async (req, res) => {
 
 })
 
-
-
 io.on('connection', () =>{
   console.log('a user is connected')
 })
 
-mongoose.connect(dbUrl ,{useMongoClient : false} ,(err) => {
-  console.log('mongodb connected',err);
-})
+mongoose.connect(process.env.DATABASE_URL);
+
+mongoose.connection.on('open', () => {
+  console.log('mongodb connected');
+});
 
 var server = http.listen(3000, () => {
   console.log('server is running on port', server.address().port);
