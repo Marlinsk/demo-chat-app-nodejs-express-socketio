@@ -1,2 +1,7 @@
 .env.example
+.github
+.gitignore
+
 README.md
+
+server.test.js
