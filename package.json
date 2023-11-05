@@ -1,11 +1,12 @@
 {
-  "name": "demo-chat-app",
+  "name": "my-chat-app",
   "version": "1.0.0",
-  "description": "demo chat app",
+  "description": "This project, titled demo-chat-app, is a real-time chat application designed to facilitate seamless communication and messaging between users. Leveraging the power of Node.js, Express.js, and Socket.io, this application offers a dynamic and interactive platform for users to exchange messages in real-time.",
   "main": "./server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "npx nodemon server.js"
+    "dev": "npx nodemon server.js",
+    "test": "jasmine"
   },
   "author": "",
   "license": "ISC",
@@ -14,7 +15,6 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mongoose": "^8.0.0",
-    "request-promise": "^4.2.6",
     "socket.io": "^4.7.2"
   },
   "devDependencies": {
