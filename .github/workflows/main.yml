@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Accessing the project repository folder in the ec2 instance
-        run: sudo cd tmaior-test-marlon
-
+        run: sudo cd /home/ubuntu/tmaior-test-marlon
+        
       - name: Git pull 
         run: sudo git pull
