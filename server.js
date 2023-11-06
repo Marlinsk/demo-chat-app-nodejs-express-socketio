@@ -15,6 +15,10 @@ var Message = mongoose.model('Message',{
   message : String
 })
 
+app.get('/config', (req, res) => {
+  res.json({ serverUrl: process.env.SERVER_URL });
+});
+
 app.get('/messages', (req, res) => {
   Message.find({})
     .exec()
