@@ -12,7 +12,9 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 var Message = mongoose.model('Message',{
   name : String,
-  message : String
+  message : String,
+  createdAt: String,
+  time: String
 })
 
 app.get('/config', (req, res) => {
@@ -49,25 +51,38 @@ app.post('/messages', async (req, res) => {
   try {
     var message = new Message(req.body);
 
+    var currentDate = new Date();
+    message.createdAt = currentDate.toLocaleDateString('en-US', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+    message.time = currentDate.toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
+
     var savedMessage = await message.save();
-    console.log('saved');
+    console.log('Message saved');
 
-    var censored = await Message.findOne({ message: 'badword' });
-    if (censored)
-      await Message.remove({ _id: censored.id });
-    else
-      io.emit('message', req.body);
+    var fullMessage = await Message.findOne({ _id: savedMessage._id });
 
+    if (!fullMessage) {
+      res.sendStatus(500);
+      return;
+    }
+
+    io.emit('message', fullMessage);
     res.json({ message: 'Message Posted' });
 
   } catch (error) {
     res.sendStatus(500);
-    return console.log('error', error);
+    return console.log('Error', error);
   } finally {
     console.log('Message Posted');
   }
-
-})
+});
 
 io.on('connection', () =>{
   console.log('a user is connected')
@@ -79,7 +94,7 @@ mongoose.connection.on('open', () => {
   console.log('mongodb connected');
 });
 
-module.exports = http;
+module.exports = [http, Message];
 
 var server = http.listen(3000, () => {
   console.log('server is running on port', server.address().port);
