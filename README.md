@@ -1,4 +1,4 @@
-# Technical test
+# Demo-chat-app
 Project developed for technical evaluation.
 
 ## The objective of this project
