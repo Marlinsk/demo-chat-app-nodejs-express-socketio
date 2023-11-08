@@ -1,4 +1,4 @@
-# Demo-chat-app
+# Demo chat app with Node.js Express and Socket.io
 Project developed for technical evaluation.
 
 ## The objective of this project
