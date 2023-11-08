@@ -47,7 +47,7 @@
         socket.on('message', addMessages)
 
         function addMessages(message) {
-          $("#messages").append(`<p style="margin-bottom: 0;"> ${message.createdAt} </p> <div style="display: flex; align-items: flex-end; gap: 8px; margin-bottom: 4px;"> <h5 style="margin-bottom: 0;"> ${message.name} </h5> <i> às ${message.time} </i> </div> <p> <strong> Enviou: </strong> ${message.message} </p>`)
+          $("#messages").append(`<p style="margin-bottom: 0;"> ${message.createdAt} </p> <div style="display: flex; align-items: flex-end; gap: 8px; margin-bottom: 4px;"> <h5 style="margin-bottom: 0;"> ${message.name} </h5> <i> at ${message.time} </i> </div> <p> <strong> Message: </strong> ${message.message} </p>`)
         }
 
         function getMessages() {
