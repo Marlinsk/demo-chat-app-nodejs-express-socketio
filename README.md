@@ -47,6 +47,7 @@ cd tmaior-test-marlon
 **3º step: Create .env file before run npm install in the terminal**
 ```bash
 DATABASE_URL='mongodb+srv://USERNAME:PASSWORD@HOST/DATABASE'
+SERVER_URL='http://localhost:3000'
 ```
 **Note:** In the env.example file, there is an example of a connection URL to MongoDB Atlas.
 
