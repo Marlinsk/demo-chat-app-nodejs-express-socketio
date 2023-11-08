@@ -1,5 +1,7 @@
 # Demo chat app with Node.js Express and Socket.io
-Project developed for technical evaluation.
+A simple chat application in nodejs and mongodb
+
+Read: https://medium.com/@amkurian/simple-chat-application-in-node-js-using-express-mongoose-and-socket-io-ee62d94f5804
 
 ## The objective of this project
 This project, titled "demo-chat-app," is a real-time chat application designed to facilitate seamless communication and messaging between users. Leveraging the power of **Node.js, Express.js, and Socket.io,** this application offers a dynamic and interactive platform for users to exchange messages in real-time.
