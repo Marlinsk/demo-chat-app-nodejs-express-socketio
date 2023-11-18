@@ -38,12 +38,12 @@ This chat application reflects the ongoing evolution of web technologies and the
 ### Cloning and setting up the project
 **1º step: clone the repository to your machine from GitHub.**
 ```bash
-git clone https://github.com/Marlinsk/tmaior-test-marlon.git
+git clone https://github.com/Marlinsk/demo-chat-app-nodejs-express-socketio.git
 ```
 
 **2º step: Navigate to the project folder.**
 ```bash
-cd tmaior-test-marlon
+cd demo-chat-app-nodejs-express-socketio
 ```
 
 **3º step: Create .env file before run npm install in the terminal**
